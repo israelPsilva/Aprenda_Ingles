@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FFBB86FC</color>
-    <color name="colorPrimaryDark">#FF6200EE</color>
-    <color name="colorAccent">#FF3700B3</color>
+    <color name="colorPrimary">#795548</color>
+    <color name="colorPrimaryDark">#5D4037</color>
+    <color name="colorAccent">#A06451</color>
+    <color name="fundo">#F5E9B9</color>
 
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
