@@ -1,5 +1,6 @@
 package com.example.aprendaingls.Fragments;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import com.example.aprendaingls.R;
 
@@ -15,7 +17,10 @@ import com.example.aprendaingls.R;
  * Use the {@link NumbersFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class NumbersFragment extends Fragment {
+public class NumbersFragment extends Fragment implements View.OnClickListener{
+
+    private ImageButton btnOne, btnTwo, btnThree, btnFour, btnFive, btnSix;
+    private MediaPlayer mediaPlayer;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -61,6 +66,83 @@ public class NumbersFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate( R.layout.fragment_numbers, container, false );
+        View view = inflater.inflate( R.layout.fragment_numbers, container, false );
+
+        btnOne   = view.findViewById( R.id.numOne );
+        btnTwo   = view.findViewById( R.id.numTwo );
+        btnThree = view.findViewById( R.id.numThree );
+        btnFour  = view.findViewById( R.id.numFour );
+        btnFive  = view.findViewById( R.id.numFive );
+        btnSix   = view.findViewById( R.id.numSix );
+
+        //Aplica os eventos
+        btnOne.setOnClickListener( this );
+        btnTwo.setOnClickListener( this );
+        btnThree.setOnClickListener( this );
+        btnFour.setOnClickListener( this );
+        btnFive.setOnClickListener( this );
+        btnSix.setOnClickListener( this );
+
+
+        return view;
+    }
+
+    @Override
+    public void onClick(View view) {
+          switch (view.getId()){
+
+              case R.id.numOne:
+                  mediaPlayer = MediaPlayer.create( getActivity(), R.raw.one );
+                  playerSound();
+                  break;
+
+              case R.id.numTwo:
+                  mediaPlayer = MediaPlayer.create( getActivity(), R.raw.two );
+                  playerSound();
+                  break;
+
+              case R.id.numThree:
+                  mediaPlayer = MediaPlayer.create( getActivity(), R.raw.three );
+                  playerSound();
+                  break;
+
+              case R.id.numFour:
+                  mediaPlayer = MediaPlayer.create( getActivity(), R.raw.four );
+                  playerSound();
+                  break;
+
+              case R.id.numFive:
+                  mediaPlayer = MediaPlayer.create( getActivity(), R.raw.five );
+                  playerSound();
+                  break;
+
+              case R.id.numSix:
+                  mediaPlayer = MediaPlayer.create( getActivity(), R.raw.six );
+                  playerSound();
+                  break;
+
+          }
+    }
+
+    private void playerSound() {
+        if (mediaPlayer != null){
+            mediaPlayer.start();
+
+            mediaPlayer.setOnCompletionListener( new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    mediaPlayer.release();
+                }
+            } );
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if(mediaPlayer != null){
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
     }
 }
